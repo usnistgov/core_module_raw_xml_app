@@ -1,0 +1,2 @@
+core-module-text-area-app==1.0.0-rc2
+xml-utils==1.0.0-rc2
