@@ -29,14 +29,19 @@ class RawXmlModule(TextAreaModule):
         if request.method == 'GET':
             if 'data' in request.GET:
                 data = request.GET['data']
-                # convert the string to an XML tree
-                xml_data = XSDTree.fromstring(data)
-                xml_string = ''
-                for xml_data_element in xml_data:
-                    # keep the pretty format of the XML for display
-                    xml_string += XSDTree.tostring(xml_data_element, True)
-                # if no element in the tree, we just take the data as is
-                data = xml_string if xml_string else request.GET['data']
+                try:
+                    xml_string = ''
+                    # convert the string to an XML tree
+                    xml_data = self.parse_data_with_root(data)
+                    for xml_data_element in xml_data:
+                        # keep the pretty format of the XML for display
+                        xml_string += XSDTree.tostring(xml_data_element, True)
+                    data = xml_string
+                except XMLError:
+                    # If an XML Error is thrown when we want to display the data again
+                    # the data may not be valid
+                    # so we display the data as is
+                    data = request.GET['data']
 
         elif request.method == 'POST':
             if 'data' in request.POST:
@@ -57,12 +62,12 @@ class RawXmlModule(TextAreaModule):
             return '<span class="alert-info">Please enter XML in the text area located above</span>'
         try:
             # parse the data
-            self.parse_data(self.data)
+            self.parse_data_with_root(self.data)
             return '<span class="alert-success">XML entered is well-formed</span>'
         except XMLError, ex:
             return '<span class="alert-danger">XML error: ' + ex.message + '</span>'
 
-    def parse_data(self, data):
+    def parse_data_with_root(self, data):
         """ Parse the xml and add a root to it for validation
 
         Args:
@@ -72,6 +77,5 @@ class RawXmlModule(TextAreaModule):
 
         """
         unescaped_data = self.parser.unescape(data)
-        # concat a root to the entry, then parse the string to a tree
-        XSDTree.fromstring(''.join(['<root>', unescaped_data, '</root>']))
-        return data
+        # concat a root to the entry, then parse the string to a tree and return it
+        return XSDTree.fromstring(''.join(['<root>', unescaped_data, '</root>']))
