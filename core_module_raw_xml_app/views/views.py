@@ -36,7 +36,7 @@ class RawXmlModule(TextAreaModule):
                     for xml_data_element in xml_data:
                         # keep the pretty format of the XML for display
                         xml_string += XSDTree.tostring(xml_data_element, True)
-                    data = xml_string
+                    data = xml_string if xml_string else request.GET['data']
                 except XMLError:
                     # If an XML Error is thrown when we want to display the data again
                     # the data may not be valid
