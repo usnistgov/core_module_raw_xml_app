@@ -64,7 +64,7 @@ class RawXmlModule(TextAreaModule):
             # parse the data
             self.parse_data_with_root(self.data)
             return '<span class="alert-success">XML entered is well-formed</span>'
-        except XMLError, ex:
+        except XMLError as ex:
             return '<span class="alert-danger">XML error: ' + ex.message + '</span>'
 
     def parse_data_with_root(self, data):
