@@ -1,7 +1,5 @@
 """ Raw Xml module
 """
-from future import standard_library
-standard_library.install_aliases()
 import html.parser
 
 from core_module_text_area_app.views.views import TextAreaModule
