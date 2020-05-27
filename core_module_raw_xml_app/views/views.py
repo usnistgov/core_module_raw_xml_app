@@ -25,27 +25,27 @@ class RawXmlModule(TextAreaModule):
         Returns:
 
         """
-        data = ''
-        if request.method == 'GET':
-            if 'data' in request.GET:
-                data = request.GET['data']
+        data = ""
+        if request.method == "GET":
+            if "data" in request.GET:
+                data = request.GET["data"]
                 try:
-                    xml_string = ''
+                    xml_string = ""
                     # convert the string to an XML tree
                     xml_data = self.parse_data_with_root(data)
                     for xml_data_element in xml_data:
                         # keep the pretty format of the XML for display
                         xml_string += XSDTree.tostring(xml_data_element, True)
-                    data = xml_string if xml_string else request.GET['data']
+                    data = xml_string if xml_string else request.GET["data"]
                 except XMLError:
                     # If an XML Error is thrown when we want to display the data again
                     # the data may not be valid
                     # so we display the data as is
-                    data = request.GET['data']
+                    data = request.GET["data"]
 
-        elif request.method == 'POST':
-            if 'data' in request.POST:
-                data = request.POST['data']
+        elif request.method == "POST":
+            if "data" in request.POST:
+                data = request.POST["data"]
 
         return data
 
@@ -58,14 +58,14 @@ class RawXmlModule(TextAreaModule):
         Returns:
 
         """
-        if self.data == '':
+        if self.data == "":
             return '<span class="alert-info">Please enter XML in the text area located above</span>'
         try:
             # parse the data
             self.parse_data_with_root(self.data)
             return '<span class="alert-success">XML entered is well-formed</span>'
         except XMLError as ex:
-            return '<span class="alert-danger">XML error: ' + str(ex) + '</span>'
+            return '<span class="alert-danger">XML error: ' + str(ex) + "</span>"
 
     def parse_data_with_root(self, data):
         """ Parse the xml and add a root to it for validation
@@ -78,4 +78,4 @@ class RawXmlModule(TextAreaModule):
         """
         unescaped_data = self.parser.unescape(data)
         # concat a root to the entry, then parse the string to a tree and return it
-        return XSDTree.fromstring(''.join(['<root>', unescaped_data, '</root>']))
+        return XSDTree.fromstring("".join(["<root>", unescaped_data, "</root>"]))
