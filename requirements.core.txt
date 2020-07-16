@@ -1,2 +1,2 @@
-core-module-text-area-app==1.10.*
-xml-utils==1.9.*
+core-module-text-area-app==1.11.*
+xml-utils==1.10.*
