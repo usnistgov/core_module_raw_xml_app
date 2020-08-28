@@ -11,13 +11,12 @@ class RawXmlModule(TextAreaModule):
     parser = None
 
     def __init__(self):
-        """ Initialize RawXmlModule
-        """
+        """Initialize RawXmlModule"""
         self.parser = html.parser.HTMLParser()
         TextAreaModule.__init__(self, label="Raw XML", data="Insert XML Data here...")
 
     def _retrieve_data(self, request):
-        """ Retrieve module's data
+        """Retrieve module's data
 
         Args:
             request:
@@ -50,7 +49,7 @@ class RawXmlModule(TextAreaModule):
         return data
 
     def _render_data(self, request):
-        """ Return module's data rendering
+        """Return module's data rendering
 
         Args:
             request:
@@ -68,7 +67,7 @@ class RawXmlModule(TextAreaModule):
             return '<span class="alert-danger">XML error: ' + str(ex) + "</span>"
 
     def parse_data_with_root(self, data):
-        """ Parse the xml and add a root to it for validation
+        """Parse the xml and add a root to it for validation
 
         Args:
             data:
