@@ -1,3 +1,6 @@
+""" Setup core raw xml module app
+"""
+
 from os import chdir, pardir
 from os.path import join, exists, dirname, normpath, abspath
 
