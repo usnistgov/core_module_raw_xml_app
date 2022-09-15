@@ -1,3 +1,6 @@
+""" Setup core raw xml module app
+"""
+
 from os import chdir, pardir
 from os.path import join, exists, dirname, normpath, abspath
 
@@ -23,7 +26,7 @@ chdir(normpath(join(abspath(__file__), pardir)))
 
 setup(
     name="core_module_raw_xml_app",
-    version="1.15.0",
+    version="2.0.0-beta2",
     description="Raw xml module for the parser core project",
     long_description=long_desc,
     author="NIST IT Lab",

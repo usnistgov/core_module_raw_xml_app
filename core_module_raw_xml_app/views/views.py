@@ -8,6 +8,8 @@ from xml_utils.xsd_tree.xsd_tree import XSDTree
 
 
 class RawXmlModule(TextAreaModule):
+    """Raw Xml Module"""
+
     parser = None
 
     def __init__(self):
