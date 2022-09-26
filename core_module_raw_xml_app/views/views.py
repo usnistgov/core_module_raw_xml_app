@@ -15,7 +15,9 @@ class RawXmlModule(TextAreaModule):
     def __init__(self):
         """Initialize RawXmlModule"""
         self.parser = html.parser.HTMLParser()
-        TextAreaModule.__init__(self, label="Raw XML", data="Insert XML Data here...")
+        TextAreaModule.__init__(
+            self, label="Raw XML", data="Insert XML Data here..."
+        )
 
     def _retrieve_data(self, request):
         """Retrieve module's data
@@ -64,9 +66,13 @@ class RawXmlModule(TextAreaModule):
         try:
             # parse the data
             self.parse_data_with_root(self.data)
-            return '<span class="alert-success">XML entered is well-formed</span>'
+            return (
+                '<span class="alert-success">XML entered is well-formed</span>'
+            )
         except XMLError as ex:
-            return '<span class="alert-danger">XML error: ' + str(ex) + "</span>"
+            return (
+                '<span class="alert-danger">XML error: ' + str(ex) + "</span>"
+            )
 
     def parse_data_with_root(self, data):
         """Parse the xml and add a root to it for validation
@@ -79,4 +85,6 @@ class RawXmlModule(TextAreaModule):
         """
         unescaped_data = self.parser.unescape(data)
         # concat a root to the entry, then parse the string to a tree and return it
-        return XSDTree.fromstring("".join(["<root>", unescaped_data, "</root>"]))
+        return XSDTree.fromstring(
+            "".join(["<root>", unescaped_data, "</root>"])
+        )
