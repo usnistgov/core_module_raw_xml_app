@@ -1,5 +1,6 @@
 """ Raw Xml module
 """
+
 import html.parser
 
 from core_module_text_area_app.views.views import TextAreaModule
