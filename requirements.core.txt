@@ -1,1 +1,1 @@
-core-module-text-area-app==2.17.*
+core-module-text-area-app==2.18.*
