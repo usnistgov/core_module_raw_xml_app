@@ -1,5 +1,4 @@
-""" Raw Xml module
-"""
+"""Raw Xml module"""
 
 import html.parser
 

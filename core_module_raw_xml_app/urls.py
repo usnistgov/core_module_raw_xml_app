@@ -1,5 +1,4 @@
-""" Url router for the raw xml module
-"""
+"""Url router for the raw xml module"""
 
 from django.urls import re_path
 

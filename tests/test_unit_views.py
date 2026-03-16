@@ -1,2 +1,1 @@
-""" Module Text Area testing
-"""
+"""Module Text Area testing"""
